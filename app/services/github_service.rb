@@ -1,6 +1,5 @@
 class GithubService
-  include GithubRepos
-  include GithubViews
+
   def initialize(user)
     @user = user
     @_connection = Faraday.new("https://api.github.com")
