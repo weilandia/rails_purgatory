@@ -11,7 +11,7 @@
         null,
         1,
         1,
-        1,
+        null,
         1,
         1,
         1,
@@ -231,6 +231,10 @@
       "/Users/nweiland/Dropbox/Turing/projects/rails_purgatory/config/routes.rb": [
         1,
         1,
+        null,
+        1,
+        null,
+        1,
         1,
         1,
         1,
@@ -241,6 +245,10 @@
         null
       ],
       "/Users/nweiland/Dropbox/Turing/projects/rails_purgatory/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/nweiland/Dropbox/Turing/projects/rails_purgatory/app/helpers/purgatory_helper.rb": [
         1,
         null
       ],
@@ -378,7 +386,7 @@
         null,
         1,
         1,
-        10,
+        12,
         null,
         null
       ],
@@ -404,13 +412,14 @@
         null,
         null
       ],
-      "/Users/nweiland/Dropbox/Turing/projects/rails_purgatory/app/controllers/users_controller.rb": [
+      "/Users/nweiland/Dropbox/Turing/projects/rails_purgatory/app/controllers/purgatories_controller.rb": [
         1,
         1,
         null,
         null,
         1,
-        null,
+        1,
+        1,
         null,
         null
       ],
@@ -418,9 +427,9 @@
         1,
         null,
         1,
-        1,
-        1,
-        1,
+        2,
+        2,
+        2,
         null,
         null,
         1,
@@ -434,15 +443,30 @@
         null,
         1,
         1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        0,
+        null,
+        null,
+        null,
+        1,
+        1,
         0,
         null,
         null,
         1,
-        1,
+        2,
         null,
         null
       ]
     },
-    "timestamp": 1461032649
+    "timestamp": 1461034598
   }
 }

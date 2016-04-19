@@ -7,9 +7,9 @@ RSpec.feature "user logs in for the first time and goes through onboarding" do
 
       visit "/"
       click_on "signin with github"
-      require "pry"; binding.pry
+
       service = GithubService.new(User.last)
-      expect(current_path).to eq(enter_user_path(User.last.nickname))
+      expect(current_path).to eq(new_user_purgatory_path(User.last.nickname))
       expect(page).to_not have_content("git clone")
 
       click_on "are you ready?"
