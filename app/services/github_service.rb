@@ -15,18 +15,34 @@ class GithubService
     parse(connection.post(path, params))
   end
 
+  def put(path, params)
+    params = params.to_json
+    parse(connection.post(path, params))
+  end
+
   def create_purgatory
-    if new_to_purgatory?
+    if !purgatory?
+      parse(connection.post("/repos/railspurgatory/purgatory/forks"))
     end
   end
 
-  def new_to_purgatory?
-    search_for_purgatory_repo[:incomplete_results]
+  def add_exercise(exercise)
+    params = exercise_params(exercise)
+    put(exercise.path, params)
+  end
+
+  def exercise_params(exercise)
+    { path: exercise.path, content: exercise.encoded_text, message: exercise.commit_message }
+  end
+
+  def purgatory?
+    parse(connection.put("/repos/#{@user.nickname}/purgatory/contents/spec/test.rb"))
+    search_for_purgatory_repo[:total_count] >= 1
   end
 
   def search_for_purgatory_repo
     Rails.cache.fetch("#{@user.nickname}_purgatory", expires_in: 1.minute) do
-      parse(connection.get("/search/repositories?q=Rails Purgatory+in:readme+user:#{@user.nickname}"))
+      parse(connection.get("/search/repositories?q=+purgatoryuser:#{@user.nickname}+repo:purgatory+fork:only"))
     end
   end
 

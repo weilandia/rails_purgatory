@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  get 'purgatory/new'
-
-  get 'purgatory/create'
+  get 'exercises/create'
 
   root 'static_pages#home'
   get '/auth/github', as: :github_login
@@ -9,6 +7,7 @@ Rails.application.routes.draw do
   get 'sessions/destroy', as: :signout
 
   resource :users, as: :user, path: ":username", only: [:show] do
-    resources :purgatories, only: [:new, :create, :show]
+    resource :purgatory, only: [:new, :create, :show]
+    resources :exercises, only: [:create]
   end
 end

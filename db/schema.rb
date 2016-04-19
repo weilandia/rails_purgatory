@@ -28,15 +28,15 @@ ActiveRecord::Schema.define(version: 20160419020023) do
   add_index "comments", ["submission_id"], name: "index_comments_on_submission_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
-  create_table "repos", force: :cascade do |t|
-    t.integer  "user_id"
+  create_table "exercises", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "sha"
+    t.string   "text"
+    t.string   "encoded_text"
+    t.string   "path"
+    t.string   "commit_message"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
-
-  add_index "repos", ["user_id"], name: "index_repos_on_user_id", using: :btree
 
   create_table "submissions", force: :cascade do |t|
     t.integer  "user_id"
@@ -53,12 +53,14 @@ ActiveRecord::Schema.define(version: 20160419020023) do
 
   create_table "user_exercises", force: :cascade do |t|
     t.integer  "user_id"
+    t.integer  "exercise_id"
     t.string   "slug"
     t.integer  "iteration_count"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
+  add_index "user_exercises", ["exercise_id"], name: "index_user_exercises_on_exercise_id", using: :btree
   add_index "user_exercises", ["user_id"], name: "index_user_exercises_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -73,22 +75,10 @@ ActiveRecord::Schema.define(version: 20160419020023) do
     t.integer  "login_count", default: 0
   end
 
-  create_table "views", force: :cascade do |t|
-    t.integer  "repo_id"
-    t.string   "path"
-    t.string   "name"
-    t.string   "sha"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "views", ["repo_id"], name: "index_views_on_repo_id", using: :btree
-
   add_foreign_key "comments", "submissions"
   add_foreign_key "comments", "users"
-  add_foreign_key "repos", "users"
   add_foreign_key "submissions", "user_exercises"
   add_foreign_key "submissions", "users"
+  add_foreign_key "user_exercises", "exercises"
   add_foreign_key "user_exercises", "users"
-  add_foreign_key "views", "repos"
 end

@@ -7,5 +7,10 @@
     </div>
   </div>
   <div class="row">
+    <% Exercise.pluck(:name).each do |exercise| %>
+    <div class="exercise col-xs-4" data-exercise="<%= exercise %>" data-user="<%= current_user.nickname %>">
+      <%= exercise %>
+    </div>
+    <% end %>
   </div>
 </div>

@@ -12,13 +12,13 @@ RSpec.feature "user logs in for the first time and goes through onboarding" do
       expect(current_path).to eq(new_user_purgatory_path(User.last.nickname))
       expect(page).to_not have_content("git clone")
 
-      click_on "are you ready?"
+      click_on "begin."
 
       expect(service.purgatory?).to eq(true)
 
-      expect(page).to have_content("git clone")
-
-      click_on "begin"
+      Exercise.all.each do |exercise|
+        expect(page).to have_content(exercise.name)
+      end
 
       expect(current_path).to eq(user_path(User.last.nickname))
 
