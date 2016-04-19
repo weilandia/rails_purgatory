@@ -15,19 +15,16 @@
     font-weight: 300;
     margin-bottom: 40px;
   }
+
   .btn-signin {
     font-weight: 300;
     background-color: $button-hover;
-  }
-
-  .btn-signin:hover {
-    color: $off-white;
-    background-color: $button;
-  }
-
-  .btn-signin:focus {
-    color: $off-white;
-    outline-width: 0;
+    :hover {
+      background-color: $button;
+    }
+    :focus {
+      outline-width: 0;
+    }
   }
 }
 

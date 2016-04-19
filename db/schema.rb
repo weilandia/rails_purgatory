@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407011146) do
+ActiveRecord::Schema.define(version: 20160419020023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "submission_id"
+    t.string   "body"
+    t.string   "html_body"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "comments", ["submission_id"], name: "index_comments_on_submission_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "repos", force: :cascade do |t|
     t.integer  "user_id"
@@ -26,6 +38,29 @@ ActiveRecord::Schema.define(version: 20160407011146) do
 
   add_index "repos", ["user_id"], name: "index_repos_on_user_id", using: :btree
 
+  create_table "submissions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "slug"
+    t.string   "code"
+    t.integer  "user_exercise_id"
+    t.string   "filename"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "submissions", ["user_exercise_id"], name: "index_submissions_on_user_exercise_id", using: :btree
+  add_index "submissions", ["user_id"], name: "index_submissions_on_user_id", using: :btree
+
+  create_table "user_exercises", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "slug"
+    t.integer  "iteration_count"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "user_exercises", ["user_id"], name: "index_user_exercises_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "provider"
     t.string   "uid"
@@ -33,8 +68,9 @@ ActiveRecord::Schema.define(version: 20160407011146) do
     t.string   "nickname"
     t.string   "token"
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "login_count", default: 0
   end
 
   create_table "views", force: :cascade do |t|
@@ -48,6 +84,11 @@ ActiveRecord::Schema.define(version: 20160407011146) do
 
   add_index "views", ["repo_id"], name: "index_views_on_repo_id", using: :btree
 
+  add_foreign_key "comments", "submissions"
+  add_foreign_key "comments", "users"
   add_foreign_key "repos", "users"
+  add_foreign_key "submissions", "user_exercises"
+  add_foreign_key "submissions", "users"
+  add_foreign_key "user_exercises", "users"
   add_foreign_key "views", "repos"
 end
