@@ -25,6 +25,8 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'capybara'
+  gem 'shoulda-matchers', require: false
+  gem 'factory_girl_rails'
   gem 'vcr'
   gem 'webmock'
   gem 'launchy'

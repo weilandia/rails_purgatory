@@ -1,3 +1,6 @@
+@import "colors";
+@import "font_stack";
+
 .nav-container {
   margin-left: 30px;
   margin-right: 30px;
@@ -9,7 +12,7 @@
 
 .nav-logo-access {
   font-weight: 300;
-  color: #34495e;
+  color: $dark-blue;
 }
 
 .navbar-header {

@@ -1,5 +1,8 @@
+@import "colors";
+@import "font_stack";
+
 *{
-  font-family:'Open Sans', sans-serif;
+  font-family:$font-stack;
   font-weight: 400;
 }
 
@@ -13,7 +16,7 @@
   border-radius: 0;
   text-align: center;
   color: white;
-  background-color: rgba(41,128,185,.3);
+  background-color: $purgatory-blue;
 }
 .light {
   font-weight: 300;
