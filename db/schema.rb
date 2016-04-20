@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419020023) do
+ActiveRecord::Schema.define(version: 20160419012602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,27 +34,25 @@ ActiveRecord::Schema.define(version: 20160419020023) do
     t.string   "encoded_text"
     t.string   "path"
     t.string   "commit_message"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string   "solution_file"
+    t.string   "solution_method"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "submissions", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "slug"
-    t.string   "code"
+    t.string   "encoded_text"
+    t.string   "text"
     t.integer  "user_exercise_id"
-    t.string   "filename"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
   add_index "submissions", ["user_exercise_id"], name: "index_submissions_on_user_exercise_id", using: :btree
-  add_index "submissions", ["user_id"], name: "index_submissions_on_user_id", using: :btree
 
   create_table "user_exercises", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "exercise_id"
-    t.string   "slug"
     t.integer  "iteration_count"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
@@ -70,15 +68,14 @@ ActiveRecord::Schema.define(version: 20160419020023) do
     t.string   "nickname"
     t.string   "token"
     t.string   "email"
+    t.integer  "login_count", default: 0
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-    t.integer  "login_count", default: 0
   end
 
   add_foreign_key "comments", "submissions"
   add_foreign_key "comments", "users"
   add_foreign_key "submissions", "user_exercises"
-  add_foreign_key "submissions", "users"
   add_foreign_key "user_exercises", "exercises"
   add_foreign_key "user_exercises", "users"
 end

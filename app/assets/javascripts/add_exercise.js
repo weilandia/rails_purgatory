@@ -7,11 +7,9 @@ $(document).ready(function(){
 });
 
 function addExercise(exercise, user) {
-  $.ajax({
-    method: 'post',
+  $.post({
     url: '/' + user + '/exercises',
-    data: { "user": user,
-            "exercise": exercise },
+    data: { "exercise": exercise },
     success: function(res) {
       console.log("cool")
     }

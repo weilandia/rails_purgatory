@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def first_login?
+  def purgatory?
     login_count == 1
   end
 

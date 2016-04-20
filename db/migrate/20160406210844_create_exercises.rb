@@ -6,6 +6,8 @@ class CreateExercises < ActiveRecord::Migration
       t.string :encoded_text
       t.string :path
       t.string :commit_message
+      t.string :solution_file
+      t.string :solution_method
 
       t.timestamps null: false
     end

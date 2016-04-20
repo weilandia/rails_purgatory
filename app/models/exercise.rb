@@ -5,4 +5,8 @@ class Exercise < ActiveRecord::Base
   def encode_exercise
     self.encoded_text = Base64.encode64(text)
   end
+
+  def parse_name
+    path.gsub("/spec/","").gsub(".rb","")
+  end
 end
