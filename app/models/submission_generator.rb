@@ -22,15 +22,17 @@ class SubmissionGenerator
   end
 
   def collect_submissions
+    require "pry"; binding.pry
     @exercises.map do |exercise|
-      solution = select_exercise_solution(exercise)
+      solution = select_exercise_solution(exercise).first
       user_exercise = @user.user_exercises.find(exercise.id)
       user_exercise.submissions.new(text: solution.contents, encoded_text: solution.encoded_contents)
     end
   end
 
   def select_exercise_solution(exercise)
-    @comparison.take_while { |file| file.parse_solution_name == exercise.parse_name }
+    @comparison.select { |file| file.parse_solution_name == exercise.parse_name
+    }
   end
 
   def find_solutions

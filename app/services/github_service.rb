@@ -38,7 +38,7 @@ class GithubService
   def web_hook_params
     { name: "web",
       config: {
-        url: ENV['WEBHOOK_PATH'] + "/#{@user.nickname}/submissions",
+        url: "http://8fda5113.ngrok.io" + "api/v1/#{@user.nickname}/submissions",
         content_type: "json"
         }
       }
