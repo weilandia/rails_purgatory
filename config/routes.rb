@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
+  get 'submissions/create'
+
+  get 'exercises/create'
+
   root 'static_pages#home'
   get '/auth/github', as: :github_login
   get '/auth/:provider/callback', to: 'sessions#create'
   get 'sessions/destroy', as: :signout
 
   resource :users, as: :user, path: ":username", only: [:show] do
-    resource :api_repos, as: :apirepo, path: ":name", only: [:update]
+    resource :purgatory, only: [:new, :create, :show]
+    resources :exercises, only: [:create]
+    resources :submissions, only: [:create]
   end
-  post '/:username', as: :user_apirepos, to: 'api_repos#create'
 end

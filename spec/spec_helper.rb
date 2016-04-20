@@ -8,7 +8,7 @@ module Omniauth
     provider: 'github',
     uid: "1",
     info: { name: "Nick",
-          nickname: "weilandia"},
+            nickname: "weilandia"},
     credentials: { token: ENV['GITHUB_USER_TOKEN']},
     extra: { raw_info: {
           avatar_url: "https://avatars3.githubusercontent.com/u/13652979?v=3&u=4b2548366e2f82029320102fd434d968efde206b&s=140"}}})
