@@ -1,0 +1,28 @@
+@import "colors";
+@import "font_stack";
+
+*{
+  font-family:$font-stack;
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  color: $off-white;
+}
+
+.float-right {
+  float: right;
+}
+
+.alert_info {
+  margin-top: -6px;
+  margin-bottom: 0;
+  border-radius: 0;
+  text-align: center;
+  color: white;
+  background-color: $purgatory-blue;
+}
+.light {
+  font-weight: 300;
+}

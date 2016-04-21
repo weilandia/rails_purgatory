@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1">
+      <div class="instructions">
+        <h5></h5>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <% Exercise.pluck(:name).each do |exercise| %>
+    <div class="exercise col-xs-4" data-exercise="<%= exercise %>" data-user="<%= current_user.nickname %>">
+      <%= exercise %>
+    </div>
+    <% end %>
+  </div>
+</div>
