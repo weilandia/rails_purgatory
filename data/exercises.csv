@@ -20,7 +20,7 @@ RSpec.describe Customer, type: :model do
     end
   end
 end
-",app/purgatory_challenges/_spec/staged_specs/divinization_spec.rb,"require 'active_support/concern'
+",app/purgatory_challenges/_spec/divinization_spec.rb,"require 'active_support/concern'
 module Divinization
   extend ActiveSupport::Concern
 

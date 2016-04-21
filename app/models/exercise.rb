@@ -12,6 +12,6 @@ class Exercise < ActiveRecord::Base
   end
 
   def parse_name
-    spec_path.gsub("spec/challenges/","").gsub("_spec.rb","")
+    spec_path.gsub("app/purgatory_challenges/_spec/","").gsub("_spec.rb","")
   end
 end

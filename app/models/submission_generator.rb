@@ -14,15 +14,12 @@ class SubmissionGenerator
   end
 
   def find_exercises(specs)
-    require "pry"; binding.pry
     specs.map do |spec|
-      require "pry"; binding.pry
       Exercise.find_by(spec_path: spec.filename)
     end
   end
 
   def collect_submissions
-    require "pry"; binding.pry
     @exercises.map do |exercise|
       require "pry"; binding.pry
       solution = select_exercise_solution(exercise).first
