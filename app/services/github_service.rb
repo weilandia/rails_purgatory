@@ -31,7 +31,17 @@ class GithubService
   def create_purgatory
     if !purgatory?
       parse(connection.post("/repos/railspurgatory/purgatory/forks"))
+      create_first_exercise
       post("/repos/#{@user.nickname}/purgatory/hooks", web_hook_params)
+    end
+  end
+
+  def create_first_exercise
+    exercise = Exercise.find_by(name: "divinization")
+    if !@user.user_exercises.find_by(exercise_id: exercise.id)
+      @user.user_exercises.create(exercise_id: exercise.id)
+      add_exercise(exercise)
+      @user.update(level: 1)
     end
   end
 

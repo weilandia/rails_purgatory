@@ -9,13 +9,13 @@
         <div class="exercise-div col-xs-4" data-exercise="tutorial" data-user="<%= current_user.nickname %>">
           <%= link_to "purgatory docs", "#" "purgatory docs", class:"exercise done" %>
         </div>
-      <% elsif current_user.level == exercise.level && current_user.completed_exercise?(exercise.id) %>
+      <% elsif current_user.level > exercise.level && current_user.completed_exercise?(exercise.id) %>
         <div class="exercise-div col-xs-4" data-exercise="<%= exercise.name %>" data-user="<%= current_user.nickname %>">
           <%= link_to "ExErCiSE SHOW", "#", class:"exercise done" %>
         </div>
       <% elsif  current_user.level == exercise.level %>
         <div class="exercise-div col-xs-4" data-exercise="<%= exercise.name %>" data-user="<%= current_user.nickname %>">
-          <%= link_to "NEXT", "#", class:"exercise next" %>
+          <%= link_to exercise.name, "#", class:"exercise new" %>
         </div>
       <% else %>
         <div class="exercise-div col-xs-4" data-exercise="<%= exercise.name %>" data-user="<%= current_user.nickname %>">
@@ -37,7 +37,7 @@
         Hey
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">begin</button>
+        <%= button_to "start your journey to activerecord paradise", user_purgatory_path, class:"btn btn-start" %>
       </div>
     </div>
   </div>
