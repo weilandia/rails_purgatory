@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20160419012602) do
     t.string   "solution_frame"
     t.string   "encoded_solution_frame"
     t.string   "solution_frame_path"
+    t.integer  "level"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -53,9 +54,9 @@ ActiveRecord::Schema.define(version: 20160419012602) do
   create_table "user_exercises", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "exercise_id"
-    t.integer  "iteration_count"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "submission",  default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "user_exercises", ["exercise_id"], name: "index_user_exercises_on_exercise_id", using: :btree
@@ -69,6 +70,7 @@ ActiveRecord::Schema.define(version: 20160419012602) do
     t.string   "token"
     t.string   "email"
     t.integer  "login_count", default: 0
+    t.integer  "level",       default: 0
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end

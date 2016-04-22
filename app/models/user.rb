@@ -3,6 +3,11 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :user_exercises
   has_many :submissions, through: :user_exercises
+  has_many :exercises, through: :user_exercises
+
+  def completed_exercise?(exercise_id)
+    user_exercises.where(sumission: 1).count > 0
+  end
 
   def self.from_omniauth(auth)
     where(uid: auth[:uid], provider: auth[:provider]).first_or_create do |user|

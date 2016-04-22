@@ -1,0 +1,118 @@
+@import "colors";
+@import "font-stack";
+
+.landing-layout  {
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
+    ),
+    url("purgatory_landing.jpeg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.landing-copy {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: $off-white;
+  h1 {
+    margin-top: -25px;
+    margin-bottom: 0;
+    font-size: 5rem;
+    white-space: nowrap;
+  }
+  p {
+    font-size: 1rem;
+    margin-top: 40px;
+  }
+  .btn-signin {
+    margin-top: 0;
+    font-weight: 300;
+    background-color: $button;
+    :hover {
+      background-color: $button;
+    }
+    :focus {
+      outline-width: 0;
+    }
+  }
+  @media(min-width: 550px) {
+    h1 {
+      font-size: 8rem;
+    }
+    p {
+      font-size: 2rem;
+    }
+  }
+}
+
+.fade-in.p {
+  -webkit-animation-delay: 0.8s;
+  -moz-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+}
+.fade-in.u {
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  animation-delay: 1s;
+}
+.fade-in.r {
+  -webkit-animation-delay: 0.8s;
+  -moz-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+}
+.fade-in.g {
+  -webkit-animation-delay: 1.2s;
+  -moz-animation-delay: 1.2s;
+  animation-delay: 1.2s;
+}
+.fade-in.a {
+  -webkit-animation-delay: 1.2s;
+  -moz-animation-delay: 1.2s;
+  animation-delay: 1.2s;
+}
+.fade-in.t {
+  -webkit-animation-delay: 0.7s;
+  -moz-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+}
+.fade-in.o {
+  -webkit-animation-delay: 0.5s;
+  -moz-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+.fade-in.y {
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  animation-delay: 1s;
+}
+.fade-in.i {
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  animation-delay: 1s;
+}
+.fade-in.l {
+  -webkit-animation-delay: 0.9s;
+  -moz-animation-delay: 0.9s;
+  animation-delay: 0.9s;
+}
+.fade-in.s {
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  animation-delay: 1s;
+}
+.fade-in.btn-signin {
+  -webkit-animation-delay: 1.6s;
+  -moz-animation-delay: 1.6s;
+  animation-delay: 1.6s;
+}
+.fade-in.landing-sub-header {
+  -webkit-animation-delay: 1.6s;
+  -moz-animation-delay: 1.6s;
+  animation-delay: 1.6s;
+}

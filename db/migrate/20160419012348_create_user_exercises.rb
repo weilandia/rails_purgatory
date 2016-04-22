@@ -3,7 +3,7 @@ class CreateUserExercises < ActiveRecord::Migration
     create_table :user_exercises do |t|
       t.references :user, index: true, foreign_key: true
       t.references :exercise, index: true, foreign_key: true
-      t.integer :iteration_count
+      t.integer :submission, default: 0
 
       t.timestamps null: false
     end
