@@ -8,6 +8,7 @@ class CreateExercises < ActiveRecord::Migration
       t.string :solution_frame
       t.string :encoded_solution_frame
       t.string :solution_frame_path
+      t.integer :level
 
       t.timestamps null: false
     end

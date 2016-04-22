@@ -21,9 +21,9 @@ class SubmissionGenerator
 
   def collect_submissions
     @exercises.map do |exercise|
-      require "pry"; binding.pry
       solution = select_exercise_solution(exercise).first
       user_exercise = @user.user_exercises.find(exercise.id)
+      user_exercise.level_up(@user)
       user_exercise.submissions.new(solution: solution.contents, encoded_solution: solution.encoded_contents)
     end
   end
@@ -37,5 +37,9 @@ class SubmissionGenerator
     @comparison.select do |file|
       file.filename.include?("app/models/solutions")
     end
+  end
+
+  def level_up
+
   end
 end

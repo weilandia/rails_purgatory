@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       session[:user_info] = user_info
     end
-    redirect_to new_user_purgatory_path(current_user.nickname)
+    redirect_to user_path(current_user.nickname)
   end
 
   def destroy

@@ -1,16 +1,44 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-10 col-xs-offset-1">
-      <div class="instructions">
-        <h5></h5>
+    <% Exercise.all.each do |exercise| %>
+      <% if exercise.level == 0  && current_user.level == 0 %>
+        <div class="exercise-div col-xs-4" data-exercise="tutorial" data-user="<%= current_user.nickname %>">
+          <%= link_to exercise.name, "#", class:"exercise new", "data-toggle" => "modal", 'data-target' => '#tutorialModal' %>
+        </div>
+      <% elsif exercise.level == 0 %>
+        <div class="exercise-div col-xs-4" data-exercise="tutorial" data-user="<%= current_user.nickname %>">
+          <%= link_to "purgatory docs", "#" "purgatory docs", class:"exercise done" %>
+        </div>
+      <% elsif current_user.level > exercise.level && current_user.completed_exercise?(exercise.id) %>
+        <div class="exercise-div col-xs-4" data-exercise="<%= exercise.name %>" data-user="<%= current_user.nickname %>">
+          <%= link_to "ExErCiSE SHOW", "#", class:"exercise done" %>
+        </div>
+      <% elsif  current_user.level == exercise.level %>
+        <div class="exercise-div col-xs-4" data-exercise="<%= exercise.name %>" data-user="<%= current_user.nickname %>">
+          <%= link_to exercise.name, "#", class:"exercise new" %>
+        </div>
+      <% else %>
+        <div class="exercise-div col-xs-4" data-exercise="<%= exercise.name %>" data-user="<%= current_user.nickname %>">
+          <%= link_to exercise.name, "#", class:"exercise locked" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="modal fade" id="tutorialModal" tabindex="-1" role="dialog" aria-labelledby="tutorialModalLabel" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="tutorialModal">Welcome to purgatory.</h4>
+      </div>
+      <div class="modal-body">
+        Hey
+      </div>
+      <div class="modal-footer">
+        <%= button_to "start your journey to activerecord paradise", user_purgatory_path, class:"btn btn-start" %>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <% Exercise.pluck(:name).each do |exercise| %>
-    <div class="exercise col-xs-4" data-exercise="<%= exercise %>" data-user="<%= current_user.nickname %>">
-      <%= exercise %>
-    </div>
-    <% end %>
   </div>
 </div>

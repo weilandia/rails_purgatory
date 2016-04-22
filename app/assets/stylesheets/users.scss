@@ -1,6 +1,61 @@
 @import "colors";
-@import "font_stack";
+@import "font-stack";
 
 .dropdown-margin {
   margin-bottom: 10px;
+}
+
+a.exercise{
+  text-decoration:none;
+  color:#fff;
+  -webkit-transition: -webkit-transform 0.1s;
+  position:relative;
+  overflow:hidden;
+}
+
+a.exercise h2{
+  position:absolute;
+  bottom:5px;
+  font-size:14px;
+}
+
+a.exercise h2.top {
+  position:static;
+
+  font-size:14px;
+}
+
+a.exercise:hover {
+  -webkit-transform: scale(1.05);
+}
+
+.exercise {
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    font-size:13px;
+    padding:10px;
+    display:block;
+    float:left;
+    margin:15px;
+}
+
+.done{background:$purgatory-blue;}
+.new{background:$purgatory-green;}
+.locked{background:$purgatory-dark-blue;}
+
+.modal-open .modal,.exercise:focus{
+    outline:none!important
+}
+
+.btn-start {
+  margin-top: 0;
+  font-weight: 300;
+  background-color: $button;
+  :hover {
+    background-color: $button;
+  }
+  :focus {
+    outline-width: 0;
+  }
 }
