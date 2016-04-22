@@ -1,4 +1,56 @@
-name,spec,spec_path,solution_frame,solution_frame_path
+name,spec,spec_path,solution_frame,solution_frame_path,level
+abyss,"require 'rails_helper'
+RSpec.describe Invoice, type: :model do
+  context ""abyss"" do
+    xit ""can select customer ids"" do
+      expect(Invoice.select_customer_ids.take(10).map(&:id).compact).to eq([])
+
+      customer_ids = [1, 1, 1, 1, 1, 1, 1, 1, 2, 3]
+
+      expect(Invoice.select_customer_ids.take(10).map(&:customer_id).compact).to eq(customer_ids)
+    end
+
+    xit ""understands the difference between pluck and select"" do
+      plucked_class = String
+      expect(Invoice.pluck_status.take(10).map(&:class).first).to eq(plucked_class)
+
+      selected_class = Invoice
+      expect(Invoice.select_status.take(10).map(&:class).first).to eq(selected_class)
+    end
+
+    xit ""understands performance of pluck vs select"" do
+      expect(Invoice.select_is_faster_than_pluck_head_to_head).to eq(true)
+
+      expect(Invoice.pluck_is_faster_than_select_for_specific_data).to eq(true)
+    end
+  end
+end
+",app/purgatory_challenges/_spec/abyss_spec.rb,"require 'active_support/concern'
+module Abyss
+  LEVEL = 2
+  extend ActiveSupport::Concern
+  
+  class_methods do
+    def select_customer_ids
+    end
+
+    def pluck_status
+    end
+
+    def select_status
+    end
+
+    def select_is_faster_than_pluck_head_to_head
+      Benchmark.realtime { Invoice.pluck(:id) } == Benchmark.realtime { Invoice.select(:id) }
+    end
+
+    def pluck_is_faster_than_select_for_specific_data
+      Benchmark.realtime { Invoice.pluck(:id) } ==
+      Benchmark.realtime { Invoice.select(:id).map(&:id) }
+    end
+  end
+end
+",app/purgatory_challenges/abyss.rb,2
 divinization,"require 'rails_helper'
 RSpec.describe Customer, type: :model do
   context ""divinization"" do
@@ -6,7 +58,6 @@ RSpec.describe Customer, type: :model do
     xit ""can pluck first_names"" do
       expect(Customer.pluck_first_names.take(10)).to eq(customers)
     end
-
 
     xit ""can pluck last_names in reverse alphabetical order"" do
       customers = [""Zulauf"", ""Zulauf"", ""Zulauf"", ""Zulauf"", ""Zulauf"", ""Zieme"", ""Zieme"", ""Zieme"", ""Zieme"", ""Zieme""]
@@ -22,6 +73,7 @@ RSpec.describe Customer, type: :model do
 end
 ",app/purgatory_challenges/_spec/divinization_spec.rb,"require 'active_support/concern'
 module Divinization
+  LEVEL = 1
   extend ActiveSupport::Concern
 
   def unique_merchant_ids
@@ -35,4 +87,4 @@ module Divinization
     end
   end
 end
-",app/purgatory_challenges/divinization.rb
+",app/purgatory_challenges/divinization.rb,1

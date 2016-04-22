@@ -1,24 +1,24 @@
 <div class="container">
   <div class="row">
-    <% Exercise.all.each do |exercise| %>
+    <% Exercise.order(:level).each do |exercise| %>
       <% if exercise.level == 0  && current_user.level == 0 %>
-        <div class="exercise-div col-xs-4" data-exercise="tutorial" data-user="<%= current_user.nickname %>">
+        <div class="exercise-div col-xs-6 col-sm-4 col-md-3" data-exercise="tutorial" data-user="<%= current_user.nickname %>">
           <%= link_to exercise.name, "#", class:"exercise new", "data-toggle" => "modal", 'data-target' => '#tutorialModal' %>
         </div>
       <% elsif exercise.level == 0 %>
-        <div class="exercise-div col-xs-4" data-exercise="tutorial" data-user="<%= current_user.nickname %>">
+        <div class="exercise-div col-xs-6 col-sm-4 col-md-3" data-exercise="tutorial" data-user="<%= current_user.nickname %>">
           <%= link_to "purgatory docs", "#" "purgatory docs", class:"exercise done" %>
         </div>
       <% elsif current_user.level > exercise.level && current_user.completed_exercise?(exercise.id) %>
-        <div class="exercise-div col-xs-4" data-exercise="<%= exercise.name %>" data-user="<%= current_user.nickname %>">
+        <div class="exercise-div col-xs-6 col-sm-4 col-md-3" data-exercise="<%= exercise.name %>" data-user="<%= current_user.nickname %>">
           <%= link_to "ExErCiSE SHOW", "#", class:"exercise done" %>
         </div>
       <% elsif  current_user.level == exercise.level %>
-        <div class="exercise-div col-xs-4" data-exercise="<%= exercise.name %>" data-user="<%= current_user.nickname %>">
+        <div class="exercise-div col-xs-6 col-sm-4 col-md-3" data-exercise="<%= exercise.name %>" data-user="<%= current_user.nickname %>">
           <%= link_to exercise.name, "#", class:"exercise new" %>
         </div>
       <% else %>
-        <div class="exercise-div col-xs-4" data-exercise="<%= exercise.name %>" data-user="<%= current_user.nickname %>">
+        <div class="exercise-div col-xs-6 col-sm-4 col-md-3" data-exercise="<%= exercise.name %>" data-user="<%= current_user.nickname %>">
           <%= link_to exercise.name, "#", class:"exercise locked" %>
         </div>
       <% end %>

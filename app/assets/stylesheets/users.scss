@@ -5,6 +5,10 @@
   margin-bottom: 10px;
 }
 
+.exercise-div {
+  padding: 0;
+}
+
 a.exercise{
   text-decoration:none;
   color:#fff;
@@ -30,7 +34,7 @@ a.exercise:hover {
 }
 
 .exercise {
-    width:100%;
+    width:90%;
     height:auto;
     overflow:hidden;
     font-size:13px;
