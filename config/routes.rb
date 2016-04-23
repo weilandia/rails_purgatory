@@ -11,4 +11,6 @@ Rails.application.routes.draw do
     resource :purgatory, only: [:new, :create, :show]
     resources :exercises, only: [:create, :show]
   end
+
+  resources :comments, only: [:create]
 end

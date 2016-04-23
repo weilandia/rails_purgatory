@@ -10,8 +10,7 @@ class ExercisesController < ApplicationController
 
   def show
     @exercise = Exercise.find(params[:id])
-    @submissions = User.find_by(nickname: params[:username]).submissions
-    require "pry"; binding.pry
+    @submissions = User.find_by(nickname: params[:username]).user_exercises.find_by(exercise_id: @exercise.id).submissions
   end
 
   private

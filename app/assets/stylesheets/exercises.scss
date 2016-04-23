@@ -1,3 +1,72 @@
-// Place all the styles related to the Exercises controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+pre {
+  background-color: #002A35!important;
+  color: #93A1A1!important;
+  border-radius: 0;
+  border: none;
+}
+
+.submission-header {
+  a {
+    font-weight: 300;
+    color: rgba(0,0,0,.7);
+    margin-bottom: 0;
+    text-decoration: none;
+  }
+  span {
+    font-size: 25px;
+  }
+}
+
+.submission-sub-header {
+  font-size: 13px;
+  margin-bottom: 20px;
+  padding-left: 3px;
+  font-weight: 300;
+  color: rgba(0,0,0,.5);
+}
+
+.solution-code {
+  margin-bottom: -10px;
+}
+
+.exercises {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.comment {
+  font-weight: 300;
+  margin-top: 15px;
+  padding: 8px;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: .1px;
+  border-color: rgba(0,0,0,.1)
+}
+
+.commenter {
+  color: rgba(0,0,0,.5);
+  padding: 0;
+  margin: 0;
+}
+
+.comments {
+  .comment-header {
+    margin-top: 20px;
+    font-weight: 300;
+  }
+  .comment-area {
+    margin-bottom: 10px;
+    height: 100px;
+  }
+  .btn-info {
+    background: $button;
+    border: none;
+    &:hover {
+      background: $purgatory-blue;
+    }
+    :focus {
+      background: $purgatory-dark-blue;
+    }
+  }
+}
