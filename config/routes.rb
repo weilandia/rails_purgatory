@@ -8,6 +8,6 @@ Rails.application.routes.draw do
 
   resource :users, as: :user, path: ":username", only: [:show] do
     resource :purgatory, only: [:new, :create, :show]
-    resources :exercises, only: [:create]
+    resources :exercises, only: [:create, :show]
   end
 end

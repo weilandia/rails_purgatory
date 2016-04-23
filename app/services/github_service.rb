@@ -60,7 +60,6 @@ class GithubService
   end
 
   def add_test(exercise)
-    require "pry"; binding.pry
     spec_params = exercise_params(exercise)
     put("repos/#{@user.nickname}/purgatory/contents/#{exercise.spec_path}", spec_params)
   end

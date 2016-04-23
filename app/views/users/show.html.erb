@@ -11,7 +11,7 @@
         </div>
       <% elsif current_user.level > exercise.level && current_user.completed_exercise?(exercise.id) %>
         <div class="exercise-div col-xs-6 col-sm-4 col-md-3">
-          <%= link_to "ExErCiSE SHOW", "#", class:"exercise done" %>
+          <%= link_to exercise.name, user_exercise_path(current_user.nickname, exercise), class:"exercise done" %>
         </div>
       <% elsif current_user.exercises.pluck(:level).include?(exercise.level) %>
         <div class="exercise-div col-xs-6 col-sm-4 col-md-3">
@@ -23,7 +23,7 @@
         </div>
       <% else %>
         <div class="exercise-div col-xs-6 col-sm-4 col-md-3">
-          <%= link_to exercise.name, "#", class:"exercise locked" %>
+          <%= link_to exercise.name, "#", class:"exercise locked", disabled: true %>
         </div>
       <% end %>
     <% end %>

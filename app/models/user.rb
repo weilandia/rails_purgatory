@@ -27,4 +27,9 @@ class User < ActiveRecord::Base
   def update_login_count
     update(login_count: self.login_count += 1)
   end
+
+  def level_up
+    level = submissions.pluck(:user_exercise_id).uniq.count + 1
+    update(level: level)
+  end
 end
