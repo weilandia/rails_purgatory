@@ -46,6 +46,8 @@ a.exercise:hover {
 
 .done{background:$purgatory-blue;}
 .new{background:$purgatory-green;}
+.current{background:$purgatory-dark-red;}
+.tutorial{background:$purgatory-green;}
 .locked{background:$purgatory-dark-blue;}
 
 .modal-open .modal,.exercise:focus{

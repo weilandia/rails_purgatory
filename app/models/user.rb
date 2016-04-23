@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :exercises, through: :user_exercises
 
   def completed_exercise?(exercise_id)
-    user_exercises.where(sumission: 1).count > 0
+    user_exercises.where(exercise_id: exercise_id).sum(:submission)
   end
 
   def self.from_omniauth(auth)

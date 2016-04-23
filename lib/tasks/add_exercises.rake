@@ -14,11 +14,11 @@ namespace :purgatory do
 
     CSV.foreach('data/exercises.csv', headers: true, header_converters: :symbol) do |row|
       Exercise.find_or_create_by(name: row.to_h[:name]) do |e|
-        e.spec = row.to_h[:spec],
-        e.spec_path = row.to_h[:spec_path],
-        e.solution_frame = row.to_h[:solution_frame],
+        e.spec_path = row.to_h[:spec_path]
+        e.solution_frame = row.to_h[:solution_frame]
         e.solution_frame_path = row.to_h[:solution_frame_path]
         e.level = row.to_h[:level]
+        e.spec = row.to_h[:spec]
         puts "#{e.class.to_s} - #{e.name} created."
       end
     end

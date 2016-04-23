@@ -1,5 +1,6 @@
 class ExercisesController < ApplicationController
   def create
+    require "pry"; binding.pry
     exercise = Exercise.find_by(name: exercise_params[:exercise])
     user_exercise = current_user.user_exercises.new(exercise_id: exercise.id)
 

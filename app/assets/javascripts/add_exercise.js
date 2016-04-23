@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $(".exercise").one('click', function(){
+  $(".new").one('click', function(){
     var exercise = $(this).data('exercise');
     var user = $(this).data('user');
     addExercise(exercise, user);
