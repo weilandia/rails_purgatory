@@ -7,7 +7,7 @@
         </div>
       <% elsif exercise.level == 0 %>
         <div class="exercise-div col-xs-6 col-sm-4 col-md-3">
-          <%= link_to "purgatory docs", "#" "purgatory docs", class:"exercise done" %>
+          <%= link_to "purgatory docs", docs_path, class:"exercise done" %>
         </div>
       <% elsif current_user.level > exercise.level && current_user.completed_exercise?(exercise.id) %>
         <div class="exercise-div col-xs-6 col-sm-4 col-md-3">
@@ -15,11 +15,11 @@
         </div>
       <% elsif current_user.exercises.pluck(:level).include?(exercise.level) %>
         <div class="exercise-div col-xs-6 col-sm-4 col-md-3">
-          <%= link_to exercise.name, "#", class:"exercise current" %>
+          <%= link_to exercise.name, "#", class:"exercise current", "data-toggle" => "modal", "data-target" => "#currentExerciseModal", "data-exercise" => exercise.name, "data-user" => current_user.nickname %>
         </div>
       <% elsif  current_user.level == exercise.level %>
         <div class="exercise-div col-xs-6 col-sm-4 col-md-3">
-          <%= link_to exercise.name, "#", class:"exercise new", "data-toggle" => "modal", "data-target" => "#nextExerciseModal", "data-exercise" => exercise.name, "data-user" => current_user.nickname %>
+          <%= link_to exercise.name, "", class:"exercise new", "data-toggle" => "modal", "data-target" => "#nextExerciseModal", "data-exercise" => exercise.name, "data-user" => current_user.nickname %>
         </div>
       <% else %>
         <div class="exercise-div col-xs-6 col-sm-4 col-md-3">
@@ -59,6 +59,20 @@
       </div>
       <div class="modal-footer">
         <%= link_to "got it", user_path, class:"btn btn-start" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="currentExerciseModal" tabindex="-1" role="dialog" aria-labelledby="currentExerciseModalLabel" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="currentExerciseModal">The challenge awaits.</h4>
+      </div>
+      <div class="modal-body">
+        This exercise has been posted to your repo. Pull it down and solve it!
       </div>
     </div>
   </div>

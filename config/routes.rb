@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
+  get '/docs', as: :docs, to: 'static_pages#docs'
   get '/auth/github', as: :github_login
   get '/auth/:provider/callback', to: 'sessions#create'
   get 'sessions/destroy', as: :signout
