@@ -4,13 +4,13 @@
   <% @submissions.each do |s| %>
   <% submission = SubmissionDisplay.new(s) %>
     <div class="panel panel-default">
-      <div class="panel-heading"> <%= "#{count.ordinalize} iteration | completed #{time_ago_in_words(s.created_at)}" %>  </div>
+      <div class="panel-heading"> <%= "#{count.ordinalize} iteration | completed #{time_ago_in_words(s.created_at)} ago" %>  </div>
       <div class="panel-body code-panel">
         <div class="row">
-          <div class="col-sm-6 solution-code">
+          <div class="col-md-6 solution-code">
             <%= submission.solution.html_safe %>
           </div>
-          <div class="col-sm-6 comments">
+          <div class="col-md-6 comments">
           <% submission.comments.each do |c| %>
             <div class="comment">
               <%= c.body %>
