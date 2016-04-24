@@ -4,6 +4,12 @@ class User < ActiveRecord::Base
   has_many :user_exercises
   has_many :submissions, through: :user_exercises
   has_many :exercises, through: :user_exercises
+  has_many :user_roles
+  has_many :roles, through: :user_roles
+
+  def admin?
+    roles.exists?(name:"admin")
+  end
 
   def completed_exercise?(exercise_id)
     user_exercises.where(exercise_id: exercise_id).sum(:submission)
