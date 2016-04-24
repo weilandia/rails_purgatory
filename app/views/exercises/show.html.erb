@@ -1,5 +1,5 @@
 <div class="container-fluid exercises">
-  <h1 class="submission-header" data-toggle="modal" data-target=#exerciseModal data-exercise="<%= @exercise.name %>"><%= link_to @submissions.first.exercise.name, "#" %> <span><%= link_to icon("code"), "#" %></span></h1><p class="submission-sub-header"> submitted by <%= @submissions.first.user.nickname %> </p></h1>
+  <h1 class="submission-header" data-toggle="modal" data-target=#exerciseModal data-exercise="<%= @exercise.name %>"><%= link_to @exercise.name, "#" %> <span><%= link_to icon("code"), "#" %></span></h1><p class="submission-sub-header"> submitted by <%= @submissions.first.user.nickname %> </p></h1>
   <% count = @submissions.count %>
   <% @submissions.each do |s| %>
   <% submission = SubmissionDisplay.new(s) %>
