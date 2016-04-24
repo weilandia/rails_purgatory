@@ -55,6 +55,7 @@ class GithubService
   end
 
   def add_exercise(exercise)
+    puts "HERE!!"
     add_test(exercise)
     add_solution_frame(exercise)
   end
