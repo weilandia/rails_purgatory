@@ -17,6 +17,9 @@ class GithubService
 
   def put(path, params)
     params = params.to_json
+    puts "these are the puts params"
+    puts params
+    puts path
     parse(connection.put(path, params))
   end
 
@@ -55,18 +58,19 @@ class GithubService
   end
 
   def add_exercise(exercise)
-    puts "HERE!!"
     add_test(exercise)
     add_solution_frame(exercise)
   end
 
   def add_test(exercise)
     spec_params = exercise_params(exercise)
+    puts spec_params
     put("repos/#{@user.nickname}/purgatory/contents/#{exercise.spec_path}", spec_params)
   end
 
   def add_solution_frame(exercise)
     solution_params = exercise_solution_params(exercise)
+    puts solution_params
     put("repos/#{@user.nickname}/purgatory/contents/#{exercise.solution_frame_path}", solution_params)
   end
 
