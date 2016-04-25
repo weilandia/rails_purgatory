@@ -3,10 +3,10 @@ namespace :purgatory do
   desc 'add exercises from ../purgatory'
   task add_exercises: :environment do
     Exercise.find_or_create_by(name: "welcome to purgatory") do |e|
-      e.spec = "",
-      e.spec_path = "",
-      e.solution_frame = "",
-      e.solution_frame_path = ""
+      e.spec = "tutorial",
+      e.spec_path = "tutorial",
+      e.solution_frame = "tutorial",
+      e.solution_frame_path = "tutorial",
       e.level = 0
       puts "#{e.class.to_s} - #{e.name} created."
     end

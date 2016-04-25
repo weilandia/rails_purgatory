@@ -13,12 +13,13 @@ class SubmissionGenerator
 
   def collect_submissions
     @submissions.map do |submission|
-      return if !submission.contents.include?("LEVEL")
-      exercise = Exercise.find_by(solution_frame_path: submission.filename)
-      user_exercise = @user.user_exercises.find_by(exercise_id: exercise.id)
-      user_exercise.update(submission: 1)
-      @user.level_up
-      user_exercise.submissions.new(solution: submission.contents, encoded_solution: submission.encoded_contents)
+      if submission.contents.include?("LEVEL")
+        exercise = Exercise.find_by(solution_frame_path: submission.filename)
+        user_exercise = @user.user_exercises.find_by(exercise_id: exercise.id)
+        user_exercise.update(submission: 1)
+        @user.level_up
+        user_exercise.submissions.new(solution: submission.contents, encoded_solution: submission.encoded_contents)
+      end
     end
   end
 end

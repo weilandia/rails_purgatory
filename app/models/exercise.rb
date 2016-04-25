@@ -3,6 +3,13 @@ class Exercise < ActiveRecord::Base
   before_save :encode_exercise
   before_save :encode_solution_frame
 
+  validates :name, presence: true
+  validates :spec, presence: true
+  validates :spec_path, presence: true
+  validates :solution_frame, presence: true
+  validates :solution_frame_path, presence: true
+  validates :level, presence: true
+
   def encode_exercise
     self.encoded_spec = Base64.encode64(spec)
   end

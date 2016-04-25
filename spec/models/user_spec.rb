@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  it { should have_many :submissions }
+  it { should have_many :comments }
+  it { should have_many :user_exercises }
+  it { should have_many :exercises }
+  it { should have_many :user_roles }
+  it { should have_many :roles }
+
   before(:each) do
     create(:exercise)
     @user = create(:user)
