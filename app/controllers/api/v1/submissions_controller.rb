@@ -4,8 +4,7 @@ module Api
       def create
         payload = WebhookPayload.new(params)
         if payload.from_cli?
-          @submissions = SubmissionGenerator.new(payload).collect_submissions
-          @submissions.each(&:save)
+          SubmissionGenerator.new(payload).collect_submissions
         end
         render nothing: true
       end

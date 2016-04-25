@@ -17,8 +17,8 @@ class SubmissionGenerator
         exercise = Exercise.find_by(solution_frame_path: submission.filename)
         user_exercise = @user.user_exercises.find_by(exercise_id: exercise.id)
         user_exercise.update(submission: 1)
+        user_exercise.submissions.create(solution: submission.contents, encoded_solution: submission.encoded_contents)
         @user.level_up
-        user_exercise.submissions.new(solution: submission.contents, encoded_solution: submission.encoded_contents)
       end
     end
   end
