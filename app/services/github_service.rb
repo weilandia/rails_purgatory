@@ -16,6 +16,7 @@ class GithubService
   end
 
   def put(path, params)
+    puts "add file"
     params = params.to_json
     parse(connection.put(path, params))
   end
@@ -39,6 +40,7 @@ class GithubService
   def create_first_exercise
     exercise = Exercise.find_by(name: "divinization")
     if !@user.user_exercises.find_by(exercise_id: exercise.id)
+      puts "create first"
       @user.user_exercises.create(exercise_id: exercise.id)
       add_exercise(exercise)
       @user.update(level: 1)
