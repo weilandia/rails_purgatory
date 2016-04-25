@@ -5,7 +5,7 @@ class WebhookPayload
     @commit_sha = params[:after]
     @user = User.find_by(nickname: params[:username])
     @service = GithubService.new(@user)
-    @commit_message = @commits.first[:message]
+    @commit_message = commit_message
   end
 
   def commit
@@ -19,5 +19,13 @@ class WebhookPayload
   def from_cli?
     return false if @commits.nil?
     @commit_message != "Welcome to purgatory."
+  end
+
+  def commit_message
+    if @commits
+      @commits.first[:message]
+    else
+      nil
+    end
   end
 end

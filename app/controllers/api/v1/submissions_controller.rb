@@ -5,7 +5,6 @@ module Api
         payload = WebhookPayload.new(params)
         if payload.from_cli?
           @submissions = SubmissionGenerator.new(payload).collect_submissions
-          require "pry"; binding.pry
           @submissions.each(&:save)
         end
         render nothing: true

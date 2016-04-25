@@ -16,7 +16,6 @@ class GithubService
   end
 
   def put(path, params)
-    puts "FILE ADDED"
     params = params.to_json
     parse(connection.put(path, params))
   end
@@ -32,8 +31,8 @@ class GithubService
   def create_purgatory
     if !purgatory?
       parse(connection.post("/repos/railspurgatory/purgatory/forks"))
-      post("/repos/#{@user.nickname}/purgatory/hooks", web_hook_params)
       create_first_exercise
+      post("/repos/#{@user.nickname}/purgatory/hooks", web_hook_params)
     end
   end
 
