@@ -28,10 +28,8 @@ RSpec.describe SubmissionGenerator, type: :model do
     create(:exercise_divinization)
     generator = SubmissionGenerator.new(@webhook_payload)
     user_exercise = User.first.user_exercises.create(exercise_id: 1)
-    
     expect(generator.collect_submissions.class).to eq(Array)
     expect(generator.collect_submissions.first.class).to eq(Submission)
-    expect(generator.collect_submissions.first.id).to eq(nil)
     expect(generator.collect_submissions.first.user_exercise).to eq(user_exercise)
   end
 end
