@@ -5,6 +5,7 @@ class WebhookPayload
     @commit_sha = params[:after]
     @user = User.find_by(nickname: params[:username])
     @service = GithubService.new(@user)
+    @commit_message = @commits.first[:message]
   end
 
   def commit

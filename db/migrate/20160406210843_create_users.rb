@@ -7,7 +7,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :nickname
       t.string :token
       t.string :email
-      t.integer :login_count, default: 0
       t.integer :level, default: 0
 
       t.timestamps null: false

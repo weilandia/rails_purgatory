@@ -87,10 +87,6 @@ class GithubService
     end
   end
 
-  def delete_purgatory
-    parse(connection.delete("/repos/#{@user.nickname}/purgatory"))
-  end
-
 private
   def parse(response)
     JSON.parse(response.body, symbolize_names: true)

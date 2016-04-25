@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20160423234921) do
     t.integer  "user_id"
     t.integer  "submission_id"
     t.string   "body"
-    t.string   "html_body"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -85,10 +84,9 @@ ActiveRecord::Schema.define(version: 20160423234921) do
     t.string   "nickname"
     t.string   "token"
     t.string   "email"
-    t.integer  "login_count", default: 0
-    t.integer  "level",       default: 0
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "level",      default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_foreign_key "comments", "submissions"

@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
   def create
     user_info = request.env["omniauth.auth"]
     if user = User.from_omniauth(user_info)
-      user.update_login_count
       session[:user_id] = user.id
       session[:user_info] = user_info
     end
