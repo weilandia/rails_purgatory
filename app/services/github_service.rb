@@ -11,12 +11,12 @@ class GithubService
   end
 
   def post(path, params)
-    puts "FILE ADDED"
     params = params.to_json
     parse(connection.post(path, params))
   end
 
   def put(path, params)
+    puts "FILE ADDED"
     params = params.to_json
     parse(connection.put(path, params))
   end
@@ -32,8 +32,8 @@ class GithubService
   def create_purgatory
     if !purgatory?
       parse(connection.post("/repos/railspurgatory/purgatory/forks"))
-      create_first_exercise
       post("/repos/#{@user.nickname}/purgatory/hooks", web_hook_params)
+      create_first_exercise
     end
   end
 
@@ -83,9 +83,7 @@ class GithubService
   end
 
   def search_for_purgatory_repo
-    Rails.cache.fetch("#{@user.nickname}_purgatory", expires_in: 1.minute) do
-      parse(connection.get("/search/repositories?q=+purgatoryuser:#{@user.nickname}+repo:purgatory+fork:only"))
-    end
+    parse(connection.get("/search/repositories?q=+purgatoryuser:#{@user.nickname}+repo:purgatory+fork:only"))
   end
 
 private
