@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :nickname
       t.string :token
       t.string :email
+      t.string :image_url
       t.integer :level, default: 0
 
       t.timestamps null: false

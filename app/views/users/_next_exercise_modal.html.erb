@@ -1,0 +1,16 @@
+<div class="modal fade" id="nextExerciseModal" tabindex="-1" role="dialog" aria-labelledby="nextExerciseModalLabel" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="nextExerciseModal">A new challenge awaits.</h4>
+      </div>
+      <div class="modal-body">
+        A new challenge has been posted to your Purgatory repository. Navigate to your Purgatory directory in the command line and run <pre>git pull origin master</pre>.<br>
+        Once you get all tests passing, submit your challenge by running <pre>git push origin master</pre>.<br>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "got it", user_path, class:"btn btn-start" %>
+      </div>
+    </div>
+  </div>
+</div>

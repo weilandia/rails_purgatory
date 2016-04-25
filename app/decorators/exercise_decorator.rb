@@ -1,20 +1,28 @@
 class ExerciseDecorator < Draper::Decorator
   delegate_all
 
-  def create_link(current_user)
+  def create_div(current_user)
     if needs_tutorial?(current_user)
-      tutorial_link
+      exercise_div(tutorial_link(current_user))
     elsif tutorial?
-      docs_link
+      # exercise_div(docs_link)
     elsif done?(current_user)
-      done_link(current_user)
+      exercise_div(done_link(current_user))
     elsif current?(current_user)
-      current_link(current_user)
+      exercise_div(current_link(current_user))
     elsif new?(current_user)
-      new_link(current_user)
+      exercise_div(new_link(current_user))
     else
-      locked_link
+      exercise_div(locked_link)
     end
+  end
+
+  def exercise_div(content)
+    h.content_tag(:div, content, class:"exercise-div col-xs-6 col-sm-4 col-md-3")
+  end
+
+  def needs_tutorial?(current_user)
+    level == 0  && current_user.level == 0
   end
 
   def new?(current_user)
@@ -25,10 +33,6 @@ class ExerciseDecorator < Draper::Decorator
     current_user.exercises.pluck(:level).include?(level)
   end
 
-  def needs_tutorial?(current_user)
-    level == 0  && current_user.level == 0
-  end
-
   def tutorial?
     level == 0
   end
@@ -37,8 +41,8 @@ class ExerciseDecorator < Draper::Decorator
     current_user.level > exercise.level && current_user.completed_exercise?(exercise.id)
   end
 
-  def tutorial_link
-    h.link_to(name, "", class:"exercise tutorial", "data-toggle" => "modal", 'data-target' => '#tutorialModal')
+  def tutorial_link(current_user)
+    h.link_to(name, "", class:"exercise tutorial", "data-toggle" => "modal", 'data-target' => '#tutorialModal', "data-user" => current_user.nickname)
   end
 
   def docs_link

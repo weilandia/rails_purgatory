@@ -1,57 +1,10 @@
 <div class="container">
   <div class="row">
     <% @exercises.each do |exercise| %>
-      <div class="exercise-div col-xs-6 col-sm-4 col-md-3">
-        <%= exercise.create_link(current_user) %>
-      </div>
+      <%= exercise.create_div(current_user) %>
     <% end %>
   </div>
 </div>
-
-<div class="modal fade" id="tutorialModal" tabindex="-1" role="dialog" aria-labelledby="tutorialModalLabel" >
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="tutorialModal">Welcome to purgatory.</h4>
-      </div>
-      <div class="modal-body">
-        Hey
-      </div>
-      <div class="modal-footer">
-        <%= button_to "start your journey to activerecord paradise", user_purgatory_path, class:"btn btn-start" %>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="nextExerciseModal" tabindex="-1" role="dialog" aria-labelledby="nextExerciseModalLabel" >
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="nextExerciseModal">A new challenge awaits.</h4>
-      </div>
-      <div class="modal-body">
-        A new challenge has been posted to your Purgatory repository. Navigate to your Purgatory directory in the command line and run <pre>git pull origin master</pre>.<br>
-        Once you get all tests passing, submit your challenge by running <pre>git push origin master</pre>.<br>
-      </div>
-      <div class="modal-footer">
-        <%= link_to "got it", user_path, class:"btn btn-start" %>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="currentExerciseModal" tabindex="-1" role="dialog" aria-labelledby="currentExerciseModalLabel" >
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="currentExerciseModal">The challenge awaits.</h4>
-      </div>
-      <div class="modal-body">
-        This exercise has been posted to your repo. Pull it down and solve it!
-      </div>
-    </div>
-  </div>
-</div>
+<%= render partial: "welcome_tutorial_modal" %>
+<%= render partial: "next_exercise_modal" %>
+<%= render partial: "current_exercise_modal" %>

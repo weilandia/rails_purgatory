@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20160423234921) do
     t.string   "nickname"
     t.string   "token"
     t.string   "email"
+    t.string   "image_url"
     t.integer  "level",      default: 0
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false

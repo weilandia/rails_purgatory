@@ -19,6 +19,7 @@ gem 'rails_12factor', group: :production
 gem 'redcarpet'
 gem 'coderay'
 gem 'draper'
+gem 'sidekiq'
 
 group :development, :test do
   gem 'pry-rails'

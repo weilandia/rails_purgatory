@@ -11,7 +11,6 @@ function addExercise(exercise, user) {
     url: '/' + user + '/exercises',
     data: { "exercise": exercise },
     success: function(res) {
-      console.log("cool")
     }
   });
 }

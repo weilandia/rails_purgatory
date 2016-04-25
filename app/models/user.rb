@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
       user.name = auth.info.name
       user.nickname = auth.info.nickname
       user.token = auth.credentials.token
+      user.image_url = auth.info.image
     end
   end
 
