@@ -11,6 +11,7 @@ class GithubService
   end
 
   def post(path, params)
+    puts "FILE ADDED"
     params = params.to_json
     parse(connection.post(path, params))
   end
