@@ -1,31 +1,9 @@
 <div class="container">
   <div class="row">
-    <% Exercise.order(:level).each do |exercise| %>
-      <% if exercise.level == 0  && current_user.level == 0 %>
-        <div class="exercise-div col-xs-6 col-sm-4 col-md-3" data-exercise="tutorial" data-user="<%= current_user.nickname %>">
-          <%= link_to exercise.name, "", class:"exercise tutorial", "data-toggle" => "modal", 'data-target' => '#tutorialModal' %>
-        </div>
-      <% elsif exercise.level == 0 %>
-        <div class="exercise-div col-xs-6 col-sm-4 col-md-3">
-          <%= link_to "purgatory docs", docs_path, class:"exercise done" %>
-        </div>
-      <% elsif current_user.level > exercise.level && current_user.completed_exercise?(exercise.id) %>
-        <div class="exercise-div col-xs-6 col-sm-4 col-md-3">
-          <%= link_to exercise.name, user_exercise_path(current_user.nickname, exercise), class:"exercise done" %>
-        </div>
-      <% elsif current_user.exercises.pluck(:level).include?(exercise.level) %>
-        <div class="exercise-div col-xs-6 col-sm-4 col-md-3">
-          <%= link_to exercise.name, "#", class:"exercise current", "data-toggle" => "modal", "data-target" => "#currentExerciseModal", "data-exercise" => exercise.name, "data-user" => current_user.nickname %>
-        </div>
-      <% elsif  current_user.level == exercise.level %>
-        <div class="exercise-div col-xs-6 col-sm-4 col-md-3">
-          <%= link_to exercise.name, "", class:"exercise new", "data-toggle" => "modal", "data-target" => "#nextExerciseModal", "data-exercise" => exercise.name, "data-user" => current_user.nickname %>
-        </div>
-      <% else %>
-        <div class="exercise-div col-xs-6 col-sm-4 col-md-3">
-          <%= link_to exercise.name, "#", class:"exercise locked", disabled: true %>
-        </div>
-      <% end %>
+    <% @exercises.each do |exercise| %>
+      <div class="exercise-div col-xs-6 col-sm-4 col-md-3">
+        <%= exercise.create_link(current_user) %>
+      </div>
     <% end %>
   </div>
 </div>

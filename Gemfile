@@ -18,6 +18,7 @@ gem 'faraday'
 gem 'rails_12factor', group: :production
 gem 'redcarpet'
 gem 'coderay'
+gem 'draper'
 
 group :development, :test do
   gem 'pry-rails'

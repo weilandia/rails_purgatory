@@ -10,6 +10,8 @@ class Exercise < ActiveRecord::Base
   validates :solution_frame_path, presence: true
   validates :level, presence: true
 
+  default_scope { order(:level) }
+
   def encode_exercise
     self.encoded_spec = Base64.encode64(spec)
   end
