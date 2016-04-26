@@ -1,50 +1,20 @@
 <div class="container-fluid exercises">
-  <h1 class="submission-header" data-toggle="modal" data-target=#exerciseModal data-exercise="<%= @exercise.name %>"><%= link_to @exercise.name, "#" %> <span><%= link_to icon("code"), "#" %></span></h1><p class="submission-sub-header"> submitted by <%= @submissions.first.user.nickname %> </p></h1>
+  <h1 class="submission-header" data-toggle="modal" data-target=#exerciseModal data-exercise="<%= @exercise.name %>"><%= link_to @exercise.name, "#" %> <span><%= link_to icon("code"), "#" %></span></h1><p class="submission-sub-header"> submitted by <%= link_to @submissions.first.user_nickname, user_path(@submissions.first.user_nickname) %> </p></h1>
   <% count = @submissions.count %>
-  <% @submissions.each do |s| %>
-  <% submission = SubmissionDisplay.new(s) %>
+  <% @submissions.each do |submission| %>
     <div class="panel panel-default">
-      <div class="panel-heading"> <%= "#{count.ordinalize} iteration | completed #{time_ago_in_words(s.created_at)} ago" %>  </div>
+      <div class="panel-heading"> <%= "#{count.ordinalize} iteration | completed #{time_ago_in_words(submission.created_at)} ago" %>
+      </div>
       <div class="panel-body code-panel">
         <div class="row">
           <div class="col-md-6 solution-code">
-            <%= submission.solution.html_safe %>
+            <%= submission.coderay_solution %>
           </div>
-          <div class="col-md-6 comments">
-          <% submission.comments.each do |c| %>
-            <div class="comment">
-              <%= c.body %>
-              <br><br>
-              <p class="commenter"><%= "#{c.user.nickname} commented #{time_ago_in_words(c.created_at)} ago" %></p>
-            </div>
-          <% end %>
-            <p class="comment-header">comment on <%= submission.user %>'s code:</p>
-            <%= form_tag comments_path do %>
-              <%= text_area_tag "body", nil, class: "form-control comment-area" %>
-              <%= hidden_field_tag "user_id", current_user.id %>
-              <%= hidden_field_tag "user_nickname", current_user.nickname %>
-              <%= hidden_field_tag "exercise_id", @exercise.id %>
-              <%= hidden_field_tag "submission_id", s.id %>
-              <%= submit_tag "comment", class: "text-right btn btn-info float-right" %>
-            <% end %>
-          </div>
+          <%= render partial: "comments", locals: { submission: submission } %>
         </div>
       </div>
     </div>
     <% count -= 1 %>
   <% end %>
 </div>
-
-<div class="modal fade" id="exerciseModal" tabindex="-1" role="dialog" aria-labelledby="exerciseModalLabel" >
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exerciseModal"><%= @exercise.name %></h4>
-      </div>
-      <div class="modal-body">
-        <%= ExerciseDisplay.new(@exercise).spec.html_safe %>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render partial: "spec_modal" %>

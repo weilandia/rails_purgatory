@@ -9,8 +9,8 @@ class ExercisesController < ApplicationController
   end
 
   def show
-    @exercise = Exercise.find(params[:id])
-    @submissions = User.find_by(nickname: params[:username]).user_exercises.find_by(exercise_id: @exercise.id).submissions
+    @exercise = Exercise.find(params[:id]).decorate
+    @submissions = User.find_by(nickname: params[:username]).user_exercises.find_by(exercise_id: @exercise.id).submissions.decorate
   end
 
   private

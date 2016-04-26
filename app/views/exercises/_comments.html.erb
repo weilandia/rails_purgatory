@@ -1,0 +1,19 @@
+<div class="col-md-6 comments">
+<% submission.comments.each do |comment| %>
+  <div class="comment">
+    <%= image_tag comment.image_url, class:"avatar" %><%= comment.body %>
+    <br><br>
+    <p class="commenter"><%= link_to comment.user.nickname, user_path(comment.user.nickname) %> <%= "commented #{time_ago_in_words(comment.created_at)} ago" %>
+    </p>
+  </div>
+<% end %>
+  <p class="comment-header">comment on <%= submission.user_nickname %>'s code:</p>
+  <%= form_tag comments_path do %>
+    <%= text_area_tag "body", nil, class: "form-control comment-area" %>
+    <%= hidden_field_tag "user_id", current_user.id %>
+    <%= hidden_field_tag "user_nickname", current_user.nickname %>
+    <%= hidden_field_tag "exercise_id", @exercise.id %>
+    <%= hidden_field_tag "submission_id", submission.id %>
+    <%= submit_tag "comment", class: "text-right btn btn-info float-right" %>
+  <% end %>
+</div>
