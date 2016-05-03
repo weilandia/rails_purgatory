@@ -8,6 +8,9 @@
           <%= link_to current_user.nickname.downcase, user_path(current_user.nickname) %>
         </li>
         <li>
+          <%= link_to "solutions", submissions_path %>
+        </li>
+        <li>
           <%= link_to "docs", docs_path %>
         </li>
         <li>

@@ -39,6 +39,7 @@ class Permission
     end
 
     def user_permissions
+      return true if controller == 'submissions' && action.in?(%w(index))
       return true if controller == 'comments' && action.in?(%w(create))
       return true if controller == 'exercises' && action.in?(%w(create show))
       return true if controller == 'purgatories' && action.in?(%w(create))

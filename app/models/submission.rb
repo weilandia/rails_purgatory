@@ -8,4 +8,8 @@ class Submission < ActiveRecord::Base
   validates :user_exercise_id, presence: true
 
   default_scope { order(created_at: :desc) }
+
+  def self.completed(user)
+    select("submissions.*", "exercises.level AS level").joins(user_exercise: :exercise).where("level < ?", user.level)
+  end
 end
